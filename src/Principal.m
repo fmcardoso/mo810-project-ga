@@ -1,25 +1,25 @@
-clear all;
+function Prin=Principal(villains)
 %-------------------------------------------------------------------------- 
-%Questão 1 - Algoritmo genético 
-% Codificação Binária
+% MO810 - Projeto
+% Algoritmo Genético
+% Team Formation 
 %--------------------------------------------------------------------------
 
 %Numero de individuos da populaçao
-NumPop= 8;
-NumGenes=12;
 
-%Inicializaçao da Populaçao
-P = zeros(NumPop,NumGenes);
+[m,n] = size(villains);
+dataFolder = '../data/';
 
-for i = 1:NumPop
-    for j = 1:NumGenes
-        if rand <= 0.5
-            P(i,j) = 0;
-        else
-            P(i,j) = 1;
-        end
-    end
-end
+NumPop= 10; % Tamanho da população
+NumGenes=n; % Numero de vilões
+
+
+% Indice dos herois
+chars = csvread(strcat(dataFolder, 'marvel_character.csv'));
+
+% Inicializaçao da Populaçao
+% Gene zero significa a ausenência de um herói
+P = randi([0 chars(end)], NumPop,NumGenes) 
 
 %chama a funçao de avaliaçao
 F=Avaliacao(P, NumPop);
