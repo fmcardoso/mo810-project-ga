@@ -2,10 +2,33 @@
 %Foi usado roleta russa
 function S= Selecao(P,F,NumPop, NumGenes) 
 
-TotalFitness= sum(abs(F));
+
+% Verifica o numero de soluções viaveis, e as marca
+numViavel=0;
+sumViavel=0;
+for i=1:NumPop
+    if F(i) > 0
+        numViavel = numViavel + 1;
+        sumViavel += F(i);
+        FS(i) = F(i);
+    else
+        FS(i) = -1;
+    end
+end
+
+% Calcula o fitness de individuos inviaveis.
+% Seu valor é inversamente proporcional ao numero de individuos
+% viaveis na popoluação 
+for i=1:NumPop
+    if FS(i) < 0
+        FS(i) = abs(F(i))/(sumViavel/(numViavel + 1) + 1);
+    end
+end
+
+TotalFitness= sum(FS);
 
 for i= 1:NumPop
- GrausRoleta(i)= abs(F(i))*360/TotalFitness;
+    GrausRoleta(i)= FS(i)*360/TotalFitness;
 end
 
 %calculo da probabilidade
@@ -15,14 +38,14 @@ for i= 1:NumPop
  Prob(i)= GrausRoleta(i)/sum(GrausRoleta);
 end
 
+% TODO - Codigo comentado, é realmente necessario?
 %Verifica se existe numero com erro.
 %Se existir ele seta para zero
-
-for i=1:NumPop
-    if isnan(Prob(i))
-        Prob(i)=0;
-    end
-end
+%for i=1:NumPop
+%    if isnan(Prob(i))
+%        Prob(i)=0;
+%    end
+%end
 
 %Inicio do calculo dos intervalos
 Intervalo(1)=Prob(1);

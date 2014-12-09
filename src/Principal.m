@@ -42,7 +42,7 @@ NovaP= Selecao(P,F, NumPop,NumGenes);
 t= 1;
 N=12;
 
-melhorIndividuo = 0
+melhorIndividuo = 0;
 while(t <= 180)
     retornoReproducao = Reproducao(NovaP, 0.5, NumPop, NumGenes);
     retornoVariacao = Variacao(retornoReproducao, 0.02, NumPop, NumGenes); 
