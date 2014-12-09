@@ -4,11 +4,11 @@ dataFolder = '../data/';
 
 % Carrega as abilidades dos personagens
 v = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
+v(:, 7) = [];
 
 % Matriz com o PowerGrid dos herois e vilões
-heroesP = zeros(NumGenes, 7);
-viloesP = zeros(NumGenes, 7);
-
+heroesP = zeros(NumGenes, 6);
+viloesP = zeros(NumGenes, 6);
 
 % Obtem os atributos dos herois
 j = 0;
@@ -35,7 +35,7 @@ scoreH = sum(heroesP);
 scoreV = sum(viloesP);
 
 viavel = true;
-for i = 1:7
+for i = 1:6
 	if scoreH(i) * NumGenes < scoreV(i) * numHerois
 		viavel = false;
 		break
