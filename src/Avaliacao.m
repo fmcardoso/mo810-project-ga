@@ -1,13 +1,9 @@
-function F=Avaliacao(P, NumPop)
+function F=Avaliacao(P, viloes, NumPop, NumGenes)
 
-% Avaliaçao inicial da populaçao
-%Calculado a distancia de hamming entre os
 
-Objetivo= [0 1 0 0 1 0 0 1 0 0 1 0];
-%vetor que armazena as distancia de hamming
+% Avaliaçao da populaçao
 for i = 1:NumPop
-    T = Objetivo ~= P(i,:);
-    H(i) = sum(T);
+    Viabilidade(P(i,:), viloes, NumGenes)
 end
 
 %vetor que armazena o fitness

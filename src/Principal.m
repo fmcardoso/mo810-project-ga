@@ -1,4 +1,4 @@
-function Prin=Principal(villains)
+function Prin=Principal(viloes)
 %-------------------------------------------------------------------------- 
 % MO810 - Projeto
 % Algoritmo Genético
@@ -7,7 +7,7 @@ function Prin=Principal(villains)
 
 %Numero de individuos da populaçao
 
-[m,n] = size(villains);
+[m,n] = size(viloes);
 dataFolder = '../data/';
 
 NumPop= 10; % Tamanho da população
@@ -19,10 +19,10 @@ chars = csvread(strcat(dataFolder, 'marvel_character.csv'));
 
 % Inicializaçao da Populaçao
 % Gene zero significa a ausenência de um herói
-P = randi([0 chars(end)], NumPop,NumGenes) 
+P = randi([0 chars(end)], NumPop,NumGenes);
 
 %chama a funçao de avaliaçao
-F=Avaliacao(P, NumPop);
+F=Avaliacao(P, viloes, NumPop, NumGenes);
 
 %chama a funçao de selecao
 NovaP= Selecao(P,F, NumPop,NumGenes);
