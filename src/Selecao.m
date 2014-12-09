@@ -2,10 +2,10 @@
 %Foi usado roleta russa
 function S= Selecao(P,F,NumPop, NumGenes) 
 
-TotalFitness= sum(F);
+TotalFitness= sum(abs(F));
 
 for i= 1:NumPop
- GrausRoleta(i)= F(i)*360/TotalFitness;
+ GrausRoleta(i)= abs(F(i))*360/TotalFitness;
 end
 
 %calculo da probabilidade

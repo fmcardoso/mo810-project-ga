@@ -2,7 +2,7 @@ function X=Viabilidade(herois, viloes, NumGenes)
 
 dataFolder = '../data/';
 
-% Carrega as abilidades dos personagens
+% Carrega as habilidades dos personagens
 v = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 v(:, 7) = [];
 
@@ -43,8 +43,5 @@ for i = 1:6
 	end
 end
 
-finalScore = abs(sum(scoreH)/6 - sum(scoreV)/6) * viavel;
-
-% Retorna a diferença entre o power grid médio dos heróis e o dos vilões.
 % Caso a solução seja viável o valor é positivo, se não o valor será negativo.
-X = finalScore;
+X = viavel;
