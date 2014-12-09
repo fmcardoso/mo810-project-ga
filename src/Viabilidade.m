@@ -34,13 +34,17 @@ end
 scoreH = sum(heroesP);
 scoreV = sum(viloesP);
 
-viavel = true;
+viavel = 1;
+
 for i = 1:6
 	if scoreH(i) * NumGenes < scoreV(i) * numHerois
-		viavel = false;
+		viavel = -1;
 		break
 	end
 end
 
-% Retorna 1 caso o time de herois seja mais forte que o de viloes
-X = viavel;
+finalScore = abs(sum(scoreH)/6 - sum(scoreV)/6) * viavel;
+
+% Retorna a diferença entre o power grid médio dos heróis e o dos vilões.
+% Caso a solução seja viável o valor é positivo, se não o valor será negativo.
+X = finalScore;
