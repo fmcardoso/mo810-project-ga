@@ -19,48 +19,48 @@ chars = csvread(strcat(dataFolder, 'marvel_character.csv'));
 
 % Inicializaçao da Populaçao
 % Gene zero significa a ausenência de um herói
-P = randi([0 chars(end)], NumPop,NumGenes);
+P = randi([0 381], NumPop,NumGenes)
 
 %chama a funçao de avaliaçao
 F=Avaliacao(P, viloes, NumPop, NumGenes);
 
 %chama a funçao de selecao
-NovaP= Selecao(P,F, NumPop,NumGenes, chars(end));
+NovaP= Selecao(P,F, NumPop,NumGenes, 381)
 t= 1;
 N=12;
 
 melhorIndividuo = 0;
-while(t <= 180)
-    retornoReproducao = Reproducao(NovaP, 0.5, NumPop, NumGenes);
-    retornoVariacao = Variacao(retornoReproducao, 0.02, NumPop, NumGenes, chars(end)); 
-    %teste = hamming(retornoVariacao, NumPop);
-    retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes);
-    NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes);
+% while(t <= 180)
+%     retornoReproducao = Reproducao(NovaP, 0.5, NumPop, NumGenes);
+%     retornoVariacao = Variacao(retornoReproducao, 0.02, NumPop, NumGenes, 381); 
+%     %teste = hamming(retornoVariacao, NumPop);
+%     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes);
+%     NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes);
     
       
 
-    %Calculo da media do fitness da populacao
-    mediaFitness(t)=mean(retornoAvaliacao);
-    mediahamming(t)= mean(teste);
+%     %Calculo da media do fitness da populacao
+%     mediaFitness(t)=mean(retornoAvaliacao);
+%     mediahamming(t)= mean(teste);
     
-    melhorIndividuo = max(retornoAvaliacao);
-    melhorIndividuo_1(t) = max(retornoAvaliacao);
-    hammingMelhorIndividuo(t)=min(teste);
+%     melhorIndividuo = max(retornoAvaliacao);
+%     melhorIndividuo_1(t) = max(retornoAvaliacao);
+%     hammingMelhorIndividuo(t)=min(teste);
     
       
-    t= t+1;
+%     t= t+1;
     
-end
+%end
  
- figure(1); plot(mediahamming, 'r-'); hold on;
-    plot(hammingMelhorIndividuo); 
+ % figure(1); plot(mediahamming, 'r-'); hold on;
+ %    plot(hammingMelhorIndividuo); 
     
-    hold on;
+ %    hold on;
     
-    figure(2); plot(mediaFitness, 'r--'); hold on;
-    plot(melhorIndividuo_1);
+ %    figure(2); plot(mediaFitness, 'r--'); hold on;
+ %    plot(melhorIndividuo_1);
  
-
+% Escreve os resultados pra cada execuçao
  
  
 

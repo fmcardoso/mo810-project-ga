@@ -17,9 +17,10 @@ dirlist = dir('../data/input/*.txt');
 
 % Itera nos arquivos de entrada
 for i = 1:length(dirlist)
-	N = dlmread(strcat("../data/input/", dirlist(i).name));
+	viloes = dlmread(strcat("../data/input/", dirlist(i).name));
 
-	Principal(N);
+	Principal(viloes);
+	daas
 end
 
 
