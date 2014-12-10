@@ -32,9 +32,9 @@ N=12;
 melhorIndividuo = 0;
 while(t <= 180)
     retornoReproducao = Reproducao(NovaP, 0.5, NumPop, NumGenes);
-    retornoVariacao = Variacao(retornoReproducao, 0.02, NumPop, NumGenes); 
-    teste = hamming(retornoVariacao, NumPop);
-    retornoAvaliacao = Avaliacao(retornoVariacao,NumPop);
+    retornoVariacao = Variacao(retornoReproducao, 0.02, NumPop, NumGenes, chars(end)); 
+    %teste = hamming(retornoVariacao, NumPop);
+    retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes);
     NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes);
     
       

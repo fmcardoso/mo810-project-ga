@@ -4,6 +4,9 @@ function X=Cooperacao(lista, herois)
 X = 0;
 for i = 1:length(herois)
   for j = i+1:length(herois)
-    X += lista(herois(i), herois(j));
+  	i
+  	j
+  	lista(herois(i), herois(j));
+  	X += lista(herois(i), herois(j));
   endfor
 endfor

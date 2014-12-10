@@ -19,7 +19,7 @@ dirlist = dir('../data/input/*.txt');
 for i = 1:length(dirlist)
 	N = dlmread(strcat("../data/input/", dirlist(i).name));
 
-	Principal(N)
+	Principal(N);
 end
 
 

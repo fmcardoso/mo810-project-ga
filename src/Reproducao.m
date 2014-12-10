@@ -4,9 +4,9 @@ function P=Reproducao(NovaP, pc, NumPop, NumGenes)
 IndecesIndividuos = randperm(NumPop); 
 
 %Duas strings x1 e y1 sao selecionados a partir da populaçao atual
-for x= 0:((NumPop/2)-1)
-    p1 = NovaP(IndecesIndividuos(2*x+1),:);
-    p2 = NovaP(IndecesIndividuos(2*x+2),:);
+for x= 1:(floor(NumPop/2))
+    p1 = NovaP(IndecesIndividuos(2*x),:);
+    p2 = NovaP(IndecesIndividuos(2*x+1),:);
     
     f1= zeros(1,NumPop); 
     f2= zeros(1,NumPop);
@@ -27,8 +27,8 @@ for x= 0:((NumPop/2)-1)
     
     f2=genes2_p1+genes2_p2;
     
-    NovaGeracao(2*x+1,:) = f1;
-    NovaGeracao(2*x+2,:) = f2;
+    NovaGeracao(2*x,:) = f1;
+    NovaGeracao(2*x+1,:) = f2;
     
     P= NovaGeracao;
     
