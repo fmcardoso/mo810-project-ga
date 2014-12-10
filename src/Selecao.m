@@ -1,18 +1,32 @@
 %Seleçao
 %Foi usado roleta russa
-function S= Selecao(P,F,NumPop, NumGenes) 
+function S= Selecao(P,F,NumPop, NumGenes, maxValue) 
 
 
 % Verifica o numero de soluções viaveis, e as marca
 numViavel=0;
 sumViavel=0;
+eliteV = 0;
+elite = 0
 for i=1:NumPop
     if F(i) > 0
         numViavel = numViavel + 1;
         sumViavel += F(i);
         FS(i) = F(i);
+
+        % Elitismo - Armazena a melhor solução
+        if F(i) > eliteV
+            elite = i;
+        end
     else
         FS(i) = -1;
+    end
+end
+
+for i=1:NumPop
+    if F(i) > eliteV
+        eliteV = F(i);
+        eliteT = P(i,:);
     end
 end
 
@@ -59,7 +73,7 @@ for i=1:NumPop
 end
 
 %Sorteio para montar a próxima populaçao
-for j = 1:NumPop
+for j = 2:NumPop
     rand_num=rand(1);
     if rand_num<=Intervalo(1)
         individuo=1;
@@ -72,6 +86,14 @@ for j = 1:NumPop
     for n = 1:NumGenes
         NovaP(j,n)= P(individuo,n);
     end
+end
+
+% Elitismo - Preenche com a melhor solução valida,
+% caso não haja nenhuma utiliza um cromossomo aleatorio
+if elite > 0 
+    NovaP(1,:) = P(elite,:);
+else
+    NovaP(1,:) = randi([0 maxValue], 1,NumGenes);
 end
 
 S = NovaP;

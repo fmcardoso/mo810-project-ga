@@ -10,7 +10,7 @@ function Prin=Principal(viloes)
 [m,n] = size(viloes);
 dataFolder = '../data/';
 
-NumPop= 10; % Tamanho da população
+NumPop= 9; % Tamanho da população, deve ser impar pois a primeira posição corresponde a elite
 NumGenes=n; % Numero de vilões
 
 
@@ -22,23 +22,10 @@ chars = csvread(strcat(dataFolder, 'marvel_character.csv'));
 P = randi([0 chars(end)], NumPop,NumGenes);
 
 %chama a funçao de avaliaçao
-F=Avaliacao(P, viloes, NumPop, NumGenes)
-
-% Elitismo - Armazena a melhor solução
-eliteV = 0;
-eliteT = zeros(1, NumGenes);
-for i=1:NumPop
-    if F(i) > eliteV
-        eliteV = F(i);
-        eliteT = P(i,:);
-    end
-end
-
-eliteV
-eliteT
+F=Avaliacao(P, viloes, NumPop, NumGenes);
 
 %chama a funçao de selecao
-NovaP= Selecao(P,F, NumPop,NumGenes);
+NovaP= Selecao(P,F, NumPop,NumGenes, chars(end));
 t= 1;
 N=12;
 
