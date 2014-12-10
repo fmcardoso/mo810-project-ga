@@ -20,7 +20,6 @@ for i = 1:length(dirlist)
 	viloes = dlmread(strcat("../data/input/", dirlist(i).name));
 
 	Principal(viloes);
-	daas
 end
 
 
