@@ -16,10 +16,10 @@ dirlist = dir('../data/input/*.txt');
 
 
 % Itera nos arquivos de entrada
-for i = 1:length(dirlist)
-	viloes = dlmread(strcat("../data/input/", dirlist(i).name));
-
+%for i = 1:length(dirlist)
+	i = 3
+    viloes = dlmread(strcat('../data/input/', dirlist(i).name));
 	Principal(viloes);
-end
+%end
 
 
