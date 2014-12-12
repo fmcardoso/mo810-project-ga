@@ -1,4 +1,4 @@
-function Prin=Principal(viloes)
+function Prin=Principal(viloes, arquivo)
 %--------------------------------------------------------------------------
 % MO810 - Projeto
 % Algoritmo Genético
@@ -40,12 +40,13 @@ end
 
  % figure(1); plot(mediahamming, 'r-'); hold on;
 
- hold on;
- figure(2); plot(mediaFitness, 'r--'); hold on;
- plot(melhorIndividuo_1);
+% hold on;
+% figure(2); plot(mediaFitness, 'r--'); hold on;
+% plot(melhorIndividuo_1);
 
 % Escreve os resultados pra cada execuçao
-
+disp(strcat('Valor para execuçao: ',  arquivo))
+max(melhorIndividuo_1)
 
 
 

@@ -14,12 +14,11 @@ clear all;
 % Lista os arquivos de entrada
 dirlist = dir('../data/input/*.txt');
 
-
 % Itera nos arquivos de entrada
-%for i = 1:length(dirlist)
-	i = 3
+for i = 1:length(dirlist)
+%	i = 3
     viloes = dlmread(strcat('../data/input/', dirlist(i).name));
-	Principal(viloes);
-%end
+	Principal(viloes, dirlist(i).name);
+end
 
 

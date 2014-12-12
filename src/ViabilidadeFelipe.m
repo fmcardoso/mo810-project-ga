@@ -1,10 +1,12 @@
-function X=Viabilidade(herois, viloes, NumGenes)
+function X=ViabilidadeFelipe(herois, viloes)
 
 dataFolder = '../data/';
 
 % Carrega as habilidades dos personagens
 v = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 v(:, 7) = [];
+
+[t,NumGenes] = size(viloes);
 
 % Matriz com o PowerGrid dos herois e vilões
 heroesP = zeros(NumGenes, 6);
