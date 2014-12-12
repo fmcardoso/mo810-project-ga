@@ -1,26 +1,26 @@
 function Prin=Principal(viloes)
-%-------------------------------------------------------------------------- 
+%--------------------------------------------------------------------------
 % MO810 - Projeto
 % Algoritmo Genético
-% Team Formation 
+% Team Formation
 %--------------------------------------------------------------------------
 
-%Numero de individuos da populaçao
+% Numero de individuos da populaçao
 
-[m,n] = size(viloes);
+n = length(viloes);
 dataFolder = '../data/';
 
-NumPop= 71; % Tamanho da população, deve ser impar pois a primeira posição corresponde a elite
-NumGenes=n % Numero de vilões
+NumPop = 71; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
+NumGenes = n; % Numero de vilões
 
 % Inicializaçao da Populaçao
 % Gene zero significa a ausenência de um herói
-P = randi([0 381], NumPop,NumGenes);
+P = randi([0 381], NumPop, NumGenes);
 
-%chama a funçao de avaliaçao
-F=Avaliacao(P, viloes, NumPop, NumGenes);
+% Chama a funçao de avaliaçao
+F = Avaliacao(P, viloes, NumPop, NumGenes);
 
-%chama a funçao de selecao
+% Chama a funçao de selecao
 NovaP= Selecao(P,F, NumPop,NumGenes, 381);
 t= 1;
 N=12;
@@ -37,18 +37,18 @@ while(t <= 150)
      melhorIndividuo_1(t) = max(retornoAvaliacao);
      t = t + 1;
 end
- 
+
  % figure(1); plot(mediahamming, 'r-'); hold on;
-   
- hold on;    
+
+ hold on;
  figure(2); plot(mediaFitness, 'r--'); hold on;
  plot(melhorIndividuo_1);
- 
-% Escreve os resultados pra cada execuçao
- 
- 
 
-    
+% Escreve os resultados pra cada execuçao
+
+
+
+
 
 
 

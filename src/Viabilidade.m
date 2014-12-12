@@ -1,47 +1,21 @@
-function X=Viabilidade(herois, viloes, NumGenes)
+function X=Viabilidade(herois, viloes)
 
 dataFolder = '../data/';
 
 % Carrega as habilidades dos personagens
-v = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
-v(:, 7) = [];
+L = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 
-% Matriz com o PowerGrid dos herois e vilões
-heroesP = zeros(NumGenes, 6);
-viloesP = zeros(NumGenes, 6);
+% Carrega powergrid dos herois e viloes
+H = L(herois, 1:6);
+V = L(viloes, 1:6);
 
-% Obtem os atributos dos herois
-j = 0;
-for i = 1:NumGenes
-	if herois(i) > 0
-		j = j +1;
-		heroesP(j,:) = v(herois(i),:);
-	end
-end
+% Soma powergrid dos herois e viloes
+scoreH = sum(H);
+scoreV = sum(V);
 
-numHerois = j;
-
-% Obtem os atributos dos viloes
-j = 0;
-for i = 1:NumGenes
-	if viloes(i) > 0
-		j = j +1;
-		viloesP(j,:) = v(viloes(i),:);
-	end
-end
-
-% Verifica viabilidade de cada abilidade
-scoreH = sum(heroesP);
-scoreV = sum(viloesP);
-
-viavel = 1;
-
-for i = 1:6
-	if scoreH(i) * NumGenes < scoreV(i) * numHerois
-		viavel = -1;
-		break
-	end
-end
-
-% Caso a solução seja viável o valor é positivo, se não o valor será negativo.
-X = viavel;
+% Compara media usando apenas inteiros
+if sum(scoreH * length(V) > scoreV * length(H))
+  X = 1;
+else
+  X = -1;
+endif
