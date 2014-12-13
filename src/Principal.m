@@ -56,6 +56,12 @@ end
 disp(strcat('Valor para execuçao: ',  arquivo))
 melhorSolucao
 max(melhorIndividuo)
+
+fileID = fopen('exp.txt','at');
+fprintf(fileID,strcat('Valor para execuçao: \n',  arquivo));
+fprintf(fileID,'%f\n', max(melhorIndividuo));
+fclose(fileID);
+
   toc()
 
 
