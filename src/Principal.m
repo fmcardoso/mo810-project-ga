@@ -23,18 +23,27 @@ F = Avaliacao(P, viloes, NumPop, NumGenes);
 % Chama a funçao de selecao
 NovaP= Selecao(P,F, NumPop,NumGenes, 381);
 t= 1;
-N=12;
 
+melhorSolucao = zeros(1, NumGenes);
 melhorIndividuo = 0;
-while(t <= 150)
-     retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes);
+plato = 0;
+
+while(t <= 150 && plato < 50)
+     retornoReproducao = ReproducaoN(NovaP, 7, NumPop, NumGenes);
      retornoVariacao = Variacao(retornoReproducao, 0.03, NumPop, NumGenes, 381);
      retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes);
      NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
      mediaFitness(t)=mean(retornoAvaliacao);
-     melhorIndividuo = max(retornoAvaliacao);
-     melhorIndividuo_1(t) = max(retornoAvaliacao);
+     [maxRetorno, maxIndex] = max(retornoAvaliacao);
+     if (melhorIndividuo < maxRetorno)
+     	plato = 0;
+     	melhorIndividuo = maxRetorno;
+     	melhorSolucao = NovaP(maxIndex, :);
+     else
+     	plato++;
+     end
+     melhorIndividuo_1(t) = maxRetorno;
      t = t + 1;
 end
 
@@ -46,7 +55,8 @@ end
 
 % Escreve os resultados pra cada execuçao
 disp(strcat('Valor para execuçao: ',  arquivo))
-max(melhorIndividuo_1)
+melhorSolucao
+max(melhorIndividuo)
 
 
 

@@ -10,6 +10,7 @@ for t = 2:2:NumPop-1
     f1= zeros(1,NumGenes); 
     f2= zeros(1,NumGenes);
     
+    pc = floor(0.4 * NumGenes);%randi([0 NumGenes]);
     
     for r = 1:pc
         f1(r) = p1(r);
