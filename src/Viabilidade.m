@@ -6,7 +6,7 @@ dataFolder = '../data/';
 L = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 
 % Carrega powergrid dos herois e viloes
-H = L(herois, 1:6);
+H = L(herois(herois>0), 1:6);
 V = L(viloes, 1:6);
 
 % Soma powergrid dos herois e viloes
