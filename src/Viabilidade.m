@@ -1,4 +1,4 @@
-function X=Viabilidade(herois, viloes)
+function X=Viabilidade(herois, viloes, budgetMax = Inf)
 
 dataFolder = '../data/';
 
@@ -13,9 +13,11 @@ V = L(viloes, 1:6);
 scoreH = sum(H);
 scoreV = sum(V);
 
+% Calcula budget
+budget = max(Budget1(L,herois,viloes), Budget2(L,herois,viloes));
 
 % Compara media usando apenas inteiros
-if sum(scoreH * nnz(V) > scoreV * nnz(H))
+if (sum(scoreH * nnz(V) > scoreV * nnz(H)) && (budget < budgetMax))
   X = 1;
 else
   X = -1;
