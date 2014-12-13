@@ -6,7 +6,7 @@ function Prin=Principal(viloes, arquivo)
 %--------------------------------------------------------------------------
 
 % Numero de individuos da populaçao
-
+  tic();
 n = length(viloes);
 dataFolder = '../data/';
 
@@ -56,7 +56,7 @@ end
 disp(strcat('Valor para execuçao: ',  arquivo))
 melhorSolucao
 max(melhorIndividuo)
-
+  toc()
 
 
 

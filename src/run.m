@@ -15,11 +15,11 @@ clear all;
 dirlist = dir('../data/input/*.txt');
 
 % Itera nos arquivos de entrada
-for i = 1:length(dirlist)
+for i = 7:length(dirlist)
 %	i = 3
     viloes = dlmread(strcat('../data/input/', dirlist(i).name));
 	Principal(viloes, dirlist(i).name);
-	ErroForcado
+	%ErroForcado
 end
 
 
