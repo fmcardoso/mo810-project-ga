@@ -1,62 +1,35 @@
 %Seleçao
 %Foi usado roleta russa
-function S= Selecao(P,F,NumPop, NumGenes, maxValue) 
+function S= Selecao(P,F,NumPop, NumGenes, maxValue)
 
-% Verifica o numero de soluções viaveis, e as marca
-numViavel=0;
-sumViavel=0;
-eliteV = 0;
-elite = 0;
-for i=1:NumPop
-    if F(i) > 0
-        numViavel = numViavel + 1;
-        sumViavel += F(i);
-        FS(i) = F(i);
+% Verifica o numero de solucoes viaveis
+numViavel = nnz(F>0);
 
-        % Elitismo - Armazena a melhor solução
-        if F(i) > eliteV
-            elite = i;
-        end
-    else
-        FS(i) = -1;
-    end
-end
+% Verifica o fitness total viavel
+sumViavel = sum(F(F>0));
 
-for i=1:NumPop
-    if F(i) > eliteV
-        eliteV = F(i);
-        eliteT = P(i,:);
-    end
-end
+% Obtem valor da melhor solucao, indice da melhor solucao e powergrid da melhor solucao
+[valueElite, idxElite] = max(F);
+powerElite = P(idxElite,:);
 
-% Calcula o fitness de individuos inviaveis.
-% Seu valor é inversamente proporcional ao numero de individuos
-% viaveis na popoluação 
-for i=1:NumPop
-    if FS(i) < 0
-        FS(i) = abs(F(i)/((numViavel + 1)));
-    end
-end
+% Calcula peso das probabilidades
+weightF = F;
+weightF(F<=0) = abs(F(F<=0)/(numViavel + 1));
 
-TotalFitness= sum(FS);
+% Calcula o total dos pesos
+totalF = sum(weightF);
 
-%calculo da probabilidade
-%Determinando os intervalos da roleta
+% Calcula probabilidade de cada fitness
+probF = weightF./totalF;
 
-for i= 1:NumPop
- Prob(i)= FS(i)/TotalFitness;;
-end
-
-%Sorteio para montar a próxima populaçao
-[~,R] = histc(rand(1,NumPop),cumsum([0;FS(:)./sum(FS)]));
-NovaP = P(R,:);
+% Sorteio para montar a próxima populaçao
+[x, R] = histc(rand(1,NumPop), cumsum([0; weightF./totalF]));
+S = P(R,:);
 
 % Elitismo - Preenche com a melhor solução valida,
 % caso não haja nenhuma utiliza um cromossomo aleatorio
-if elite > 0
-    NovaP(1,:) = P(elite,:);
+if idxElite > 0
+    S(1,:) = P(idxElite,:);
 else
-    NovaP(1,:) = randi([0 maxValue], 1,NumGenes);
+    S(1,:) = round(rand(1, NumGenes)*maxValue);
 end
-
-S = NovaP;

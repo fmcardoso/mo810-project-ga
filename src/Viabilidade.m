@@ -13,8 +13,9 @@ V = L(viloes, 1:6);
 scoreH = sum(H);
 scoreV = sum(V);
 
+
 % Compara media usando apenas inteiros
-if sum(scoreH * length(V) > scoreV * length(H))
+if sum(scoreH * nnz(V) > scoreV * nnz(H))
   X = 1;
 else
   X = -1;
