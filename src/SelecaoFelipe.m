@@ -1,6 +1,6 @@
 %Seleçao
 %Foi usado roleta russa
-function S= Selecao(P,F,NumPop, NumGenes, maxValue)
+function S= SelecaoFelipe(P,F,NumPop, NumGenes, maxValue)
 
 % Verifica o numero de soluções viaveis, e as marca
 numViavel=0;

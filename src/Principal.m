@@ -10,7 +10,7 @@ function Prin=Principal(viloes, arquivo)
 n = length(viloes);
 dataFolder = '../data/';
 
-NumPop = 71; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
+NumPop = 81; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
 
 % Inicializaçao da Populaçao
@@ -21,7 +21,7 @@ P = randi([0 381], NumPop, NumGenes);
 F = Avaliacao(P, viloes, NumPop, NumGenes);
 
 % Chama a funçao de selecao
-NovaP= Selecao(P,F, NumPop,NumGenes, 381);
+NovaP= SelecaoFelipe(P,F, NumPop,NumGenes, 381);
 t= 1;
 
 melhorSolucao = zeros(1, NumGenes);
@@ -29,10 +29,10 @@ melhorIndividuo = 0;
 plato = 0;
 
 while(t <= 150 && plato < 50)
-     retornoReproducao = ReproducaoN(NovaP, 7, NumPop, NumGenes);
-     retornoVariacao = Variacao(retornoReproducao, 0.03, NumPop, NumGenes, 381);
+     retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes);
+     retornoVariacao = Variacao(retornoReproducao, 0.08, NumPop, NumGenes, 381);
      retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes);
-     NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
+     NovaP= SelecaoFelipe(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
      mediaFitness(t)=mean(retornoAvaliacao);
      [maxRetorno, maxIndex] = max(retornoAvaliacao);
@@ -47,11 +47,10 @@ while(t <= 150 && plato < 50)
      t = t + 1;
 end
 
- % figure(1); plot(mediahamming, 'r-'); hold on;
+ figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
-% hold on;
-% figure(2); plot(mediaFitness, 'r--'); hold on;
-% plot(melhorIndividuo_1);
+ figure(2); plot(mediaFitness, 'r--'); hold on;
+ 
 
 % Escreve os resultados pra cada execuçao
 disp(strcat('Valor para execuçao: ',  arquivo))

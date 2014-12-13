@@ -19,6 +19,7 @@ for i = 1:length(dirlist)
 %	i = 3
     viloes = dlmread(strcat('../data/input/', dirlist(i).name));
 	Principal(viloes, dirlist(i).name);
+	ErroForcado
 end
 
 

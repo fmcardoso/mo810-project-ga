@@ -1,8 +1,11 @@
-function P=Reproducao(NovaP, pc, NumPop, NumGenes)
+function P=Reproducao(NovaP, pc, NumPop, NumGenes, viloes)
 
 %function P=Reproducao(NovaP, pc, NumPop, NumGenes)
 
+dataFolder = '../data/';
+shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
+% Faz o crossover com exceção da elite
 for t = 2:2:NumPop-1
     p1 = NovaP(t,:);
     p2 = NovaP(t+1,:);
@@ -10,36 +13,49 @@ for t = 2:2:NumPop-1
     f1= zeros(1,NumGenes); 
     f2= zeros(1,NumGenes);
     
-    pc = floor(0.4 * NumGenes);%randi([0 NumGenes]);
+    c1 = t;
+    c2 = t + 1;
+
+
+    p1 = NovaP(c1,:);
+    p2 = NovaP(c2,:);
+    pV = [p1; p2];
     
-    for r = 1:pc
-        f1(r) = p1(r);
-        f2(r) = p2(r);
+
+    % Calcula a função objetivo para cada time
+    for i = 1:2
+       F(i) = (Cooperacao(shared, pV(i,:)) + Experiencia(shared, pV(i,:), viloes));
     end
 
-    for teste = pc+1:NumGenes
-    %teste se há elementos iguais nos cromossomos.
-        flag1 = 0;
-        flag2 = 0;
-        for i = 1:NumGenes
-            if p1(teste) == p2(i) && p1(teste) ~= 0
-                flag1 = 1;
+    fV = [abs(F(1)) abs(F(2))];
+    
+    % Gera distrubuição de escolha de genes
+    [~,R1] = histc(rand(1, NumGenes),cumsum([0;fV(:)./sum(fV)]));
+    %f1 = pV(R:)
+    [~,R2] = histc(rand(1, NumGenes),cumsum([0;fV(:)./sum(fV)]));
+    %f2 = pV(R:)
+
+    % Gera os genes
+    for i = 1:NumGenes
+       f1(i) = pV(R1(i), i);
+       f2(i) = pV(R2(i), i);
+    end
+
+    % Valores repetidos são trocados
+    for i = 1:NumGenes
+       for j = i+1:NumGenes
+            if f1(i) == f1(j)
+                v = setdiff(1:381, f1);
+                x=v(randi(numel(v)));
+                              
+                f1(i) = x;
             end
-        end
-        
-        for i = 1:NumGenes
-             if p2(teste) == p1(i) && p2(teste) ~= 0
-                  flag2 = 1;
-             end
-        end
-        %se nao houver elementos iguais, faz-se a troca.
-        if flag1 == 0 && flag2 == 0
-            f1(teste) = p2(teste);
-            f2(teste) = p1(teste);
-        else
-             f1(teste) = p1(teste);
-             f2(teste) = p2(teste);
-        end
+            if f2(i) == f2(j)
+                v = setdiff(1:381, f2);
+                x=v(randi(numel(v)));
+               f2(i) = x;
+            end
+       end
     end
     
     NovaP(t,:) = f1;
