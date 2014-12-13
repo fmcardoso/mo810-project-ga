@@ -12,7 +12,7 @@ shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 % Avaliaçao da populaçao
 % Soluções viaveis são positivas
 for i = 1:NumPop
-   V(i) = ViabilidadeFelipe(P(i,:), viloes);
+   V(i) = Viabilidade(P(i,:), viloes);
 end
 
 % Calcula a função objetivo para cada time
