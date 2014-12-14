@@ -46,7 +46,7 @@ while(t <= 150 && plato < 50)
      if (melhorIndividuo < maxRetorno)
      	plato = 0;
      	melhorIndividuo = maxRetorno;
-     	melhorSolucao = NovaP(maxIndex, :);
+     	melhorSolucao = retornoVariacao(maxIndex, :);
      else
      	plato++;
      end
@@ -66,9 +66,9 @@ end
 
 fileID = fopen('exp.txt','at');
 fprintf(fileID,strcat('Time viloes: ',  arquivo));
-fprintf(fileID,'\nValor: %.0f    Tempo: %f\n', max(melhorIndividuo), toc());
-fprintf(fileID,'Colaboration: %.3f    F. Xp: %.3f\n', Cooperacao(shared, melhorSolucao), Experiencia(shared, melhorSolucao, viloes));
-fprintf(fileID,'\Budget: %.3f\n', max(Budget1(charsAtt,melhorSolucao,viloes), Budget2(charsAtt,melhorSolucao,viloes)));
+fprintf(fileID,'\nValor: %.0f    Tempo: %f\n', melhorIndividuo, toc());
+fprintf(fileID,'Colaboration: %.0f    F. Xp: %.f\n', Cooperacao(shared, melhorSolucao), Experiencia(shared, melhorSolucao, viloes));
+fprintf(fileID,'Budget: %.3f\n', max(Budget1(charsAtt,melhorSolucao,viloes), Budget2(charsAtt,melhorSolucao,viloes)));
 fprintf(fileID,strrep(['Herois: (' sprintf(' %d,', melhorSolucao) ')'], ',)', ')\n'));
 fclose(fileID);
 

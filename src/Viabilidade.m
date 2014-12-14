@@ -14,7 +14,7 @@ function X=Viabilidade(herois, viloes, budget=false, charsAtt)
   scoreV = sum(V);
 
                                 % Com budget
-  HTCost = 0
+  HTCost = 0;
   budgetMax = Inf;
   if(budget)
                                 % HTCost
