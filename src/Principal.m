@@ -16,7 +16,7 @@ charsAtt = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 % Carrega valores do grafo
 shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
-NumPop = 81; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
+NumPop = 101; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
 
 % Inicializaçao da Populaçao
@@ -34,10 +34,10 @@ melhorSolucao = zeros(1, NumGenes);
 melhorIndividuo = 0;
 plato = 0;
 
-while(t <= 150 && plato < 50)
+while(t <= 200 && plato < 50)
      retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes, shared);
      % Aumento na probalidade da variacao porque agora ela considera todo o cromossomo
-     retornoVariacao = Variacao(retornoReproducao, 0.6, NumPop, NumGenes, charsAtt);
+     retornoVariacao = Variacao(retornoReproducao, 0.8, NumPop, NumGenes, charsAtt);
      retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared);
      NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
@@ -64,11 +64,23 @@ end
 %melhorSolucao
 %  max(melhorIndividuo)
 
+
+HTCost = 0;
+budgetMax = Inf;                                % HTCost
+for h = 1:length(melhorSolucao)
+                           % Powergrid medio do heroi
+ pgm = mean(Atributos(charsAtt, melhorSolucao(h)));
+                           % Popularidade do heroi
+ pop = Popularidade(charsAtt, melhorSolucao(h));
+                           % HTCost
+ HTCost = HTCost + pgm * pop;
+endfor
+
 fileID = fopen('exp.txt','at');
 fprintf(fileID,strcat('Time viloes: ',  arquivo));
 fprintf(fileID,'\nValor: %.0f    Tempo: %f\n', melhorIndividuo, toc());
 fprintf(fileID,'Colaboration: %.0f    F. Xp: %.f\n', Cooperacao(shared, melhorSolucao), Experiencia(shared, melhorSolucao, viloes));
-fprintf(fileID,'Budget: %.3f\n', max(Budget1(charsAtt,melhorSolucao,viloes), Budget2(charsAtt,melhorSolucao,viloes)));
+fprintf(fileID,'Budget: %.3f\n', HTCost);
 fprintf(fileID,strrep(['Herois: (' sprintf(' %d,', melhorSolucao) ')'], ',)', ')\n'));
 fclose(fileID);
 
