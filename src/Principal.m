@@ -25,7 +25,7 @@ P = randi([0 381], NumPop, NumGenes);
 F = Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared);
 
 % Chama a funçao de selecao
-NovaP= SelecaoFelipe(P,F, NumPop,NumGenes, 381);
+NovaP= Selecao(P,F, NumPop,NumGenes, 381);
 t= 1;
 
 melhorSolucao = zeros(1, NumGenes);
@@ -37,7 +37,7 @@ while(t <= 150 && plato < 50)
      % Aumento na probalidade da variacao porque agora ela considera todo o cromossomo
      retornoVariacao = Variacao(retornoReproducao, 0.3, NumPop, NumGenes, charsAtt);
      retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared);
-     NovaP= SelecaoFelipe(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
+     NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
      mediaFitness(t)=mean(retornoAvaliacao);
      [maxRetorno, maxIndex] = max(retornoAvaliacao);
@@ -55,7 +55,7 @@ end
  figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
  figure(2); plot(mediaFitness, 'r--'); hold on;
- 
+
 
 % Escreve os resultados pra cada execuçao
 %disp(strcat('Valor para execuçao: ',  arquivo))

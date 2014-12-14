@@ -3,52 +3,27 @@
 function S= Selecao(P,F,NumPop, NumGenes, maxValue)
 
 % Verifica o numero de soluções viaveis, e as marca
-numViavel=0;
-sumViavel=0;
-eliteV = 0;
-elite = 0;
-for i=1:NumPop
-    if F(i) > 0
-        numViavel = numViavel + 1;
-        sumViavel += F(i);
-        FS(i) = F(i);
+numViavel = nnz(F>0);
+sumViavel = sum(F(F>0));
+FS = F;
+FS(F<=0) = -1;
 
-        % Elitismo - Armazena a melhor solução
-        if F(i) > eliteV
-            elite = i;
-        end
-    else
-        FS(i) = -1;
-    end
-end
-
-for i=1:NumPop
-    if F(i) > eliteV
-        eliteV = F(i);
-        eliteT = P(i,:);
-    end
-end
+% Elitismo
+[eliteV, elite] = max(F);
+eliteT = P(elite,:);
 
 % Calcula o fitness de individuos inviaveis.
 % Seu valor é inversamente proporcional ao numero de individuos
 % viaveis na popoluação
-for i=1:NumPop
-    if FS(i) < 0
-        FS(i) = abs(F(i)/((numViavel + 1)));
-    end
-end
+FS(FS<0) = abs(F(FS<0)/((numViavel+1)));
+TotalFitness = sum(FS);
 
-TotalFitness= sum(FS);
+% Calculo da probabilidade
+% Determinando os intervalos da roleta
+Prob = FS/TotalFitness;
 
-%calculo da probabilidade
-%Determinando os intervalos da roleta
-
-for i= 1:NumPop
- Prob(i)= FS(i)/TotalFitness;;
-end
-
-%Sorteio para montar a próxima populaçao
-[x,R] = histc(rand(1,NumPop),cumsum([0;FS(:)./sum(FS)]));
+% Sorteio para montar a próxima populaçao
+[~,R] = histc(rand(1,NumPop),cumsum([0;FS(:)./sum(FS)]));
 NovaP = P(R,:);
 
 % Elitismo - Preenche com a melhor solução valida,
@@ -56,7 +31,6 @@ NovaP = P(R,:);
 if elite > 0
     NovaP(1,:) = P(elite,:);
 else
-    %NovaP(1,:) = randi([0 maxValue], 1,NumGenes);
   NovaP(1,:) = round(rand(1,NumGenes)*maxValue);
 end
 
