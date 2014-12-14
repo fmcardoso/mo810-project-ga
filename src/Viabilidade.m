@@ -14,10 +14,10 @@ function X=Viabilidade(herois, viloes, budget=false, charsAtt)
   scoreV = sum(V);
 
                                 % Com budget
+  HTCost = 0
   budgetMax = Inf;
   if(budget)
                                 % HTCost
-    HTCost = 0;
     for h = 1:length(herois)
                                 % Powergrid medio do heroi
       pgm = mean(Atributos(L, herois(h)));
@@ -29,11 +29,10 @@ function X=Viabilidade(herois, viloes, budget=false, charsAtt)
 
                                 % Calcula budget
     budgetMax = max(Budget1(L,herois,viloes), Budget2(L,herois,viloes));
-    budget = budget * HTCost;
   endif
 
                                 % Compara media usando apenas inteiros
-  if (sum(scoreH * nnz(V) > scoreV * nnz(H)) && (budget < budgetMax))
+  if (sum(scoreH * nnz(V) > scoreV * nnz(H)) && (HTCost < budgetMax))
       X = 1;
     else
       X = -1;
