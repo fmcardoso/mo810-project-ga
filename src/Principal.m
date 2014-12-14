@@ -12,6 +12,8 @@ dataFolder = '../data/';
 
 % Carrega as habilidades dos personagens
 charsAtt = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
+
+% Carrega valores do grafo
 shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
 NumPop = 81; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
@@ -35,7 +37,7 @@ plato = 0;
 while(t <= 150 && plato < 50)
      retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes, shared);
      % Aumento na probalidade da variacao porque agora ela considera todo o cromossomo
-     retornoVariacao = Variacao(retornoReproducao, 0.3, NumPop, NumGenes, charsAtt);
+     retornoVariacao = Variacao(retornoReproducao, 0.6, NumPop, NumGenes, charsAtt);
      retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared);
      NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
@@ -52,9 +54,9 @@ while(t <= 150 && plato < 50)
      t = t + 1;
 end
 
- figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
+% figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
- figure(2); plot(mediaFitness, 'r--'); hold on;
+% figure(2); plot(mediaFitness, 'r--'); hold on;
 
 
 % Escreve os resultados pra cada execuçao
@@ -62,15 +64,11 @@ end
 %melhorSolucao
 %  max(melhorIndividuo)
 
-dataFolder = '../data/';
-
-% Carrega valores do grafo
-shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
-
 fileID = fopen('exp.txt','at');
 fprintf(fileID,strcat('Time viloes: ',  arquivo));
 fprintf(fileID,'\nValor: %.0f    Tempo: %f\n', max(melhorIndividuo), toc());
 fprintf(fileID,'Colaboration: %.3f    F. Xp: %.3f\n', Cooperacao(shared, melhorSolucao), Experiencia(shared, melhorSolucao, viloes));
+fprintf(fileID,'\Budget: %.3f\n', max(Budget1(charsAtt,melhorSolucao,viloes), Budget2(charsAtt,melhorSolucao,viloes)));
 fprintf(fileID,strrep(['Herois: (' sprintf(' %d,', melhorSolucao) ')'], ',)', ')\n'));
 fclose(fileID);
 

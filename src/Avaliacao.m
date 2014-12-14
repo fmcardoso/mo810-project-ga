@@ -1,4 +1,4 @@
-function F=Avaliacao(P, viloes, NumPop, NumGenes, charsAtt)
+function F=Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared)
 %--------------------------------------------------------------------------
 %% Função de Fitness:
 %% Calcula asoma o peso da arestas entre os todos os pares de heróis e entre os todos os pares heroi/vilão
@@ -7,7 +7,7 @@ function F=Avaliacao(P, viloes, NumPop, NumGenes, charsAtt)
 dataFolder = '../data/';
 
 % Carrega valores do grafo
-shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
+
 
 % Avaliaçao da populaçao
 % Soluções viaveis são positivas
