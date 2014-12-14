@@ -17,7 +17,7 @@ function X=Viabilidade(herois, viloes, budget=false, charsAtt)
   budgetMax = Inf;
   if(budget)
                                 % HTCost
-    VTCost = 0;
+    HTCost = 0;
     for h = 1:length(herois)
                                 % Powergrid medio do heroi
       pgm = mean(Atributos(L, herois(h)));
