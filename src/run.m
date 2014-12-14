@@ -18,7 +18,6 @@ fileID = fopen('exp.txt','at');
 fprintf(fileID,'\n------ Inicio execucao ----- \n');
 fclose(fileID);
 
-
 % Itera nos arquivos de entrada
 for i = 1:length(dirlist)
 %	i = 3

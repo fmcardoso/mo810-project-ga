@@ -10,6 +10,9 @@ function Prin=Principal(viloes, arquivo)
 n = length(viloes);
 dataFolder = '../data/';
 
+% Carrega as habilidades dos personagens
+charsAtt = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
+
 NumPop = 81; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
 
@@ -18,7 +21,7 @@ NumGenes = n; % Numero de vilões
 P = randi([0 381], NumPop, NumGenes);
 
 % Chama a funçao de avaliaçao
-F = Avaliacao(P, viloes, NumPop, NumGenes);
+F = Avaliacao(P, viloes, NumPop, NumGenes, charsAtt);
 
 % Chama a funçao de selecao
 NovaP= SelecaoFelipe(P,F, NumPop,NumGenes, 381);
@@ -30,8 +33,8 @@ plato = 0;
 
 while(t <= 150 && plato < 50)
      retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes);
-     retornoVariacao = Variacao(retornoReproducao, 0.08, NumPop, NumGenes, 381);
-     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes);
+     retornoVariacao = Variacao(retornoReproducao, 0.08, NumPop, NumGenes, charsAtt);
+     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt);
      NovaP= SelecaoFelipe(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
      mediaFitness(t)=mean(retornoAvaliacao);
@@ -47,9 +50,9 @@ while(t <= 150 && plato < 50)
      t = t + 1;
 end
 
- %figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
+ figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
- %figure(2); plot(mediaFitness, 'r--'); hold on;
+ figure(2); plot(mediaFitness, 'r--'); hold on;
  
 
 % Escreve os resultados pra cada execuçao
@@ -57,9 +60,15 @@ end
 %melhorSolucao
 %  max(melhorIndividuo)
 
+dataFolder = '../data/';
+
+% Carrega valores do grafo
+shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
+
 fileID = fopen('exp.txt','at');
 fprintf(fileID,strcat('Time viloes: ',  arquivo));
 fprintf(fileID,'\nValor: %.0f    Tempo: %f\n', max(melhorIndividuo), toc());
+fprintf(fileID,'Colaboration: %.3f    F. Xp: %.3f\n', Cooperacao(shared, melhorSolucao), Experiencia(shared, melhorSolucao, viloes));
 fprintf(fileID,strrep(['Herois: (' sprintf(' %d,', melhorSolucao) ')'], ',)', ')\n'));
 fclose(fileID);
 

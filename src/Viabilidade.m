@@ -1,9 +1,9 @@
-function X=Viabilidade(herois, viloes, budget=false)
+function X=Viabilidade(herois, viloes, budget=false, charsAtt)
 
   dataFolder = '../data/';
 
                                 % Carrega as habilidades dos personagens
-  L = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
+  L = charsAtt;
 
                                 % Carrega powergrid dos herois e viloes
   H = L(herois(herois>0), 1:6);
