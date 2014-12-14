@@ -47,19 +47,20 @@ while(t <= 150 && plato < 50)
      t = t + 1;
 end
 
- figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
+ %figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
- figure(2); plot(mediaFitness, 'r--'); hold on;
+ %figure(2); plot(mediaFitness, 'r--'); hold on;
  
 
 % Escreve os resultados pra cada execuçao
-disp(strcat('Valor para execuçao: ',  arquivo))
-melhorSolucao
-max(melhorIndividuo)
+%disp(strcat('Valor para execuçao: ',  arquivo))
+%melhorSolucao
+%  max(melhorIndividuo)
 
 fileID = fopen('exp.txt','at');
-fprintf(fileID,strcat('Valor para execuçao: \n',  arquivo));
-fprintf(fileID,'%f\n', max(melhorIndividuo));
+fprintf(fileID,strcat('Time viloes: ',  arquivo));
+fprintf(fileID,'\nValor: %.0f    Tempo: %f\n', max(melhorIndividuo), toc());
+fprintf(fileID,strrep(['Herois: (' sprintf(' %d,', melhorSolucao) ')'], ',)', ')\n'));
 fclose(fileID);
 
   toc()

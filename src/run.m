@@ -14,8 +14,13 @@ clear all;
 % Lista os arquivos de entrada
 dirlist = dir('../data/input/*.txt');
 
+fileID = fopen('exp.txt','at');
+fprintf(fileID,'\n------ Inicio execucao ----- \n');
+fclose(fileID);
+
+
 % Itera nos arquivos de entrada
-for i = 7:length(dirlist)
+for i = 1:length(dirlist)
 %	i = 3
     viloes = dlmread(strcat('../data/input/', dirlist(i).name));
 	Principal(viloes, dirlist(i).name);
