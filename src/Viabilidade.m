@@ -1,4 +1,4 @@
-function X=Viabilidade(herois, viloes, budgetMax = Inf)
+function X=Viabilidade(herois, viloes, budget=false)
 
 dataFolder = '../data/';
 
@@ -13,11 +13,23 @@ V = L(viloes, 1:6);
 scoreH = sum(H);
 scoreV = sum(V);
 
+% HTCost
+VTCost = 0;
+for h = 1:length(herois)
+  % Powergrid medio do vilao v
+  pgm = mean(Atributos(L, herois(h)));
+  % Popularidade do vilao v
+  pop = Popularidade(L, herois(h));
+  % VTCost
+  HTCost = HTCost + pgm * pop;
+endfor
+
 % Calcula budget
-budget = max(Budget1(L,herois,viloes), Budget2(L,herois,viloes));
+budgetMax = max(Budget1(L,herois,viloes), Budget2(L,herois,viloes));
+budget = budget * HTCost;
 
 % Compara media usando apenas inteiros
-if (sum(scoreH * nnz(V) > scoreV * nnz(H)) && (budget < budgetMax))
+if (sum(scoreH * nnz(V) > scoreV * nnz(H)) && (budget < budgetMax)
   X = 1;
 else
   X = -1;
