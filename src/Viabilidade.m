@@ -33,7 +33,7 @@ function X=Viabilidade(herois, viloes, budget=false)
   endif
 
                                 % Compara media usando apenas inteiros
-  if (sum(scoreH * nnz(V) > scoreV * nnz(H)) && (budget < budgetMax)
+  if (sum(scoreH * nnz(V) > scoreV * nnz(H)) && (budget < budgetMax))
       X = 1;
     else
       X = -1;
