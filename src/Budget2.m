@@ -1,16 +1,23 @@
 function X=Budget2(lista, herois, viloes)
 
-% Todos os viloes e seu powergrid medio e do time de viloes
-todos = [382:767];
-todosPG = Atributos(lista, todos);
+% Todos os viloes
+todosHerois = [1:381];
+todosViloes = [382:767];
+
+% Powergrid medio dos viloes
+todosViloesPG = Atributos(lista, todosViloes);
+
+% Powergrid medio do time dos viloes
 viloesPG = Atributos(lista, viloes);
 
 % Factor
-factor = viloesPG/todosPG;
+factor = viloesPG/todosViloesPG;
 
-% Powergrid e popularidade medios dos herois
-heroisPG = mean(Atributos(lista, herois(herois>0)));
-heroisPop = Popularidade(lista, herois(herois>0));
+% Powergrid medio do herois
+heroisPG = mean(Atributos(lista, todosHerois));
+
+% Popularidade media dos herois
+heroisPop = Popularidade(lista, todosHerois);
 
 % VTSize
 VTSize = length(viloes);

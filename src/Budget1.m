@@ -1,11 +1,18 @@
 function X=Budget1(lista, herois, viloes)
 
-% Powergrid medio dos herois e viloes
-heroisPG = Atributos(lista, herois(herois>0));
+% Todos os herois
+todosHerois = [1:381];
+
+% Powergrid medio dos herois
+heroisPG = Atributos(lista, todosHerois);
+
+% Powergrid medio do time de viloes
 viloesPG = Atributos(lista, viloes);
 
-% Popularidade dos herois e viloes
-heroisPop = Popularidade(lista, herois(herois>0));
+% Popularidade media dos herois
+heroisPop = Popularidade(lista, todosHerois);
+
+% Popularidade media do time de viloes
 viloesPop = Popularidade(lista, viloes);
 
 % Razao entre a media dos powergrids e popularidades dos herois e viloes
