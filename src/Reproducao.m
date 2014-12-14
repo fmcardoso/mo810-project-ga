@@ -1,9 +1,6 @@
-function P=Reproducao(NovaP, pc, NumPop, NumGenes, viloes)
+function P=Reproducao(NovaP, pc, NumPop, NumGenes, viloes, shared)
 
 %function P=Reproducao(NovaP, pc, NumPop, NumGenes)
-
-dataFolder = '../data/';
-shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
 % Faz o crossover com exceção da elite
 for t = 2:2:NumPop-1
@@ -37,17 +34,19 @@ for t = 2:2:NumPop-1
     end
 
     % Valores repetidos são trocados
-    f1 = unique(f1)
-    for i = length(f1)+1:numGenes
+    f1 = unique(f1);
+    for i = length(f1)+1:NumGenes
       v = setdiff(1:381, f1);
       x = v(randi(numel(v)));
       f1(i) = x;
+    end
 
-    f2 = unique(f2)
-    for i = length(f2)+1:numGenes
+    f2 = unique(f2);
+    for i = length(f2)+1:NumGenes
       v = setdiff(1:381, f2);
       x = v(randi(numel(v)));
       f2(i) = x;
+    end
 
     NovaP(c1,:) = f1;
     NovaP(c2,:) = f2;

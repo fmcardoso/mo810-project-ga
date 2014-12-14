@@ -12,6 +12,7 @@ dataFolder = '../data/';
 
 % Carrega as habilidades dos personagens
 charsAtt = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
+shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
 NumPop = 81; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
@@ -21,7 +22,7 @@ NumGenes = n; % Numero de vilões
 P = randi([0 381], NumPop, NumGenes);
 
 % Chama a funçao de avaliaçao
-F = Avaliacao(P, viloes, NumPop, NumGenes, charsAtt);
+F = Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared);
 
 % Chama a funçao de selecao
 NovaP= SelecaoFelipe(P,F, NumPop,NumGenes, 381);
@@ -32,9 +33,10 @@ melhorIndividuo = 0;
 plato = 0;
 
 while(t <= 150 && plato < 50)
-     retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes);
-     retornoVariacao = Variacao(retornoReproducao, 0.08, NumPop, NumGenes, charsAtt);
-     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt);
+     retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes, shared);
+     % Aumento na probalidade da variacao porque agora ela considera todo o cromossomo
+     retornoVariacao = Variacao(retornoReproducao, 0.3, NumPop, NumGenes, charsAtt);
+     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared);
      NovaP= SelecaoFelipe(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
      mediaFitness(t)=mean(retornoAvaliacao);

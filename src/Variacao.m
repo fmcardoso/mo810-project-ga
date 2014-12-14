@@ -5,21 +5,26 @@ function R=Variacao(NovaP, pm, NumPop, NumGenes, charsAtt)
 
 for i=2:NumPop
 
-    % Probabilidade do heroi sofrer mutacao é inversamente proporcional ao seu powegrid
-    for h = 1:NumGenes                  % Powergrid medio do heroi
-        if NovaP(i,h) > 0
-            pgm(h) = 1/mean(Atributos(charsAtt, NovaP(i, h)));
-        else
-            pgm(h) = rand()
+    
+    if rand < pm
+        % Probabilidade do heroi sofrer mutacao é inversamente proporcional ao seu powegrid
+        for h = 1:NumGenes                  % Powergrid medio do heroi
+            if NovaP(i,h) > 0
+                pgm(h) = 1/mean(Atributos(charsAtt, NovaP(i, h)));
+            else
+                pgm(h) = rand();
+            end
         end
+
+        % Gera escolha do heroi a sobrer mutação
+        [~,ph] = histc(rand(1),cumsum([0;pgm(:)./sum(pgm)]));
+
+        % Efetua a mutacao desconsiderando as posiçoes existentes
+        v = setdiff(1:381, NovaP(i,:));
+        NovaP(i,ph) =v(randi(numel(v)));
     end
 
-    % Gera escolha do heroi a sobrer mutação
-    [~,ph] = histc(rand(1),cumsum([0;pgm(:)./sum(pgm)]));
-
-    % Efetua a mutacao desconsiderando as posiçoes existentes
-    v = setdiff(1:381, NovaP(i,:));
-    NovaP(i,ph) =v(randi(numel(v)));
+    
 
     % for j=1:NumGenes       
     %     sort = rand;
