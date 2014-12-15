@@ -3,11 +3,15 @@ mo810-project-ga
 ##Projeto MO810 - Team Formation
 Implementação em algoritmos genéticos para o problema de colaboração de super-heróis.
 
+## Requisitos
+
+É necessário o progama Octave instalado. O codigo pode ser executado no Matlab, mas são necessárias algumas modificações.
+
 ## Execução
 
-Executar arquivo run.m
+Executar arquivo run.m pelo Octave.
 
--- Codificação incompleta.
+Saída será escrita no arquivo 'exp.txt' ou outro definido nos arquivos run.m e Principal.m.
 
 
 
