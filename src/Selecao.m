@@ -1,5 +1,4 @@
-%Seleçao
-%Foi usado roleta russa
+%Seleçao usando roleta russa
 function S= Selecao(P,F,NumPop, NumGenes, maxValue)
 
 % Verifica o numero de soluções viaveis, e as marca

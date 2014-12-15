@@ -1,8 +1,6 @@
 function P=Reproducao(NovaP, pc, NumPop, NumGenes, viloes, shared)
 
-%function P=Reproducao(NovaP, pc, NumPop, NumGenes)
-
-% Faz o crossover com exceção da elite
+% Faz o crossover em todos cromossomos com exceção da elite
 for t = 2:2:NumPop-1
     c1 = t;
     c2 = t + 1;

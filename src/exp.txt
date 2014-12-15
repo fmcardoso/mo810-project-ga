@@ -1,120 +1,64 @@
-Valor para execuçao: 
-V2_763.txt1010.000000
-Valor para execuçao: 
-V4_763.txt2454.000000
-Valor para execuçao: 
-V6_763.txt5824.000000
-Valor para execuçao:V2_763.txt
-10.000000
-Valor para execuçao:V2_763.txt
-341.000000
-Valor para execuçao:V2_763.txt
-432.000000
-Valor para execuçao:V2_763.txt
-971.000000
-Valor para execuçao:V4_763.txt
-2788.000000
-Valor para execuçao:V6_763.txt
-4913.000000
-Valor para execuçao:V8_763.txt
-6846.000000
-----------------
-Valor para execuçao:V2_763.txt
-971.000000
------- Inicio execuÃ§Ã£o ----- 
-Valor para execuçao:V2_763.txt
-45
-Valor para execuçao:V4_763.txt
-395
-Valor para execuçao:V6_763.txt
-1133
-Valor para execuçao:V8_763.txt
-2818
 
 ------ Inicio execucao ----- 
 
------- Inicio execucao ----- 
-Valor para execuçao:V2_763.txt
-31
-Answer: ( 330, 119)
-Valor para execuçao:V4_763.txt
-1433
-Answer: ( 291, 331, 89, 43)
-Valor para execuçao:V6_763.txt
-766
-Answer: ( 110, 193, 307, 338, 105, 140)
-Valor para execuçao:V8_763.txt
-1633
-Answer: ( 66, 168, 317, 375, 51, 223, 161, 139)
-
------- Inicio execucao ----- 
-Valor para execuçao:V2_763.txt
-115
-Herois: ( 99, 143)
-Valor para execuçao:V4_763.txt
-1419
-Herois: ( 312, 380, 12, 154)
-Valor para execuçao:V6_763.txt
-2050
-Herois: ( 227, 115, 316, 354, 124, 187)
-Valor para execuçao:V8_763.txt
-3172
-Herois: ( 357, 353, 31, 29, 80, 365, 40, 211)
-
------- Inicio execucao ----- 
-Valor para execuçao:V10_763.txt
-1651
-Herois: ( 156, 68, 168, 46, 113, 60, 223, 228, 121, 78)
-Valor para execuçao:V12_763.txt
-2025
-Herois: ( 183, 338, 269, 185, 264, 105, 60, 308, 354, 325, 139, 372)
-
------- Inicio execucao ----- 
-Valor para execuçao:V10_763.txt
-Valor: 2569    Tempo: 6.771615
-Herois: ( 128, 141, 99, 316, 237, 24, 65, 40, 308, 263)
-Valor para execuçao:V12_763.txt
-Valor: 1256    Tempo: 7.342543
-Herois: ( 120, 185, 62, 303, 152, 139, 132, 164, 340, 107, 360, 56)
-
------- Inicio execucao ----- 
-
------- Inicio execucao ----- 
-Valor para execuçao:V10_763.txt
-Valor: 12675    Tempo: 411.739310
-Herois: ( 99, 211, 381, 228, 185, 144, 146, 338, 105, 210)
-Valor para execuçao:V12_763.txt
-Valor: 12546    Tempo: 506.834972
-Herois: ( 359, 216, 68, 105, 99, 128, 327, 146, 211, 66, 239, 210)
-Valor para execuçao:V14_763.txt
-Valor: 17141    Tempo: 689.705000
-Herois: ( 110, 13, 3, 146, 223, 161, 66, 210, 337, 289, 159, 211, 44, 99)
-Valor para execuçao:V16_763.txt
-Valor: 16922    Tempo: 754.042049
-Herois: ( 62, 331, 115, 236, 91, 259, 53, 12, 211, 223, 15, 305, 180, 119, 99, 264)
-
------- Inicio execucao ----- 
-Time viloes:V4_763.txt
-Valor: 2788    Tempo: 239.794554
-Colaboration: 582.000    Tempo: 1314.000
-Herois: ( 146, 99, 36, 211)
-
------- Inicio execucao ----- 
-
------- Inicio execucao ----- 
 Time viloes:V10_763.txt
-Valor: 11493    Tempo: 521.997161
-Colaboration: 6304.000    F. Xp: 2799.000
-Herois: ( 338, 105, 31, 51, 99, 381, 228, 344, 66, 211)
+Valor: 12616    Tempo: 640.690243
+Colaboration: 9757    F. Xp: 2859
+Budget: 36629.333
+Herois: ( 31, 46, 66, 99, 105, 204, 210, 211, 338, 341)
 
------- Inicio execucao ----- 
+Time viloes:V12_763.txt
+Valor: 16757    Tempo: 968.427538
+Colaboration: 13361    F. Xp: 3396
+Budget: 47778.167
+Herois: ( 31, 46, 66, 99, 105, 146, 204, 211, 228, 338, 377, 381)
 
------- Inicio execucao ----- 
+Time viloes:V14_763.txt
+Valor: 19331    Tempo: 1477.432404
+Colaboration: 15527    F. Xp: 3804
+Budget: 50242.167
+Herois: ( 31, 46, 66, 99, 105, 126, 146, 159, 204, 210, 211, 223, 338, 381)
 
------- Inicio execucao ----- 
+Time viloes:V16_763.txt
+Valor: 22890    Tempo: 1802.855677
+Colaboration: 18531    F. Xp: 4359
+Budget: 54880.500
+Herois: ( 31, 46, 66, 99, 105, 146, 161, 185, 204, 210, 211, 228, 316, 337, 338, 381)
 
------- Inicio execucao ----- 
+Time viloes:V18_763.txt
+Valor: 24749    Tempo: 1954.335467
+Colaboration: 17930    F. Xp: 6819
+Budget: 50318.000
+Herois: ( 12, 31, 15, 66, 99, 105, 126, 146, 161, 204, 210, 211, 223, 228, 289, 329, 338, 365)
 
------- Inicio execucao ----- 
+Time viloes:V20_763.txt
+Valor: 33311    Tempo: 2567.943839
+Colaboration: 23999    F. Xp: 9312
+Budget: 57744.167
+Herois: ( 4, 31, 46, 66, 99, 105, 146, 159, 204, 206, 210, 211, 228, 258, 115, 289, 337, 338, 360, 381)
+
+Time viloes:V2_763.txt
+Valor: 1065    Tempo: 89.986306
+Colaboration: 147    F. Xp: 918
+Budget: 8841.833
+Herois: ( 211, 66)
+
+Time viloes:V4_763.txt
+Valor: 4439    Tempo: 152.049486
+Colaboration: 4274    F. Xp: 165
+Budget: 11525.500
+Herois: ( 31, 105, 338, 204)
+
+Time viloes:V6_763.txt
+Valor: 7293    Tempo: 310.159688
+Colaboration: 5688    F. Xp: 1605
+Budget: 16761.833
+Herois: ( 31, 105, 145, 204, 211, 338)
+
+Time viloes:V8_763.txt
+Valor: 10355    Tempo: 410.856053
+Colaboration: 8039    F. Xp: 2316
+Budget: 30501.333
+Herois: ( 31, 66, 99, 105, 204, 211, 338, 210)
 
 ------ Inicio execucao ----- 
