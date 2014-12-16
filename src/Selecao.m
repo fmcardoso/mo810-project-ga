@@ -14,7 +14,7 @@ eliteT = P(elite,:);
 % Calcula o fitness de individuos inviaveis.
 % Seu valor é inversamente proporcional ao numero de individuos
 % viaveis na popoluação
-FS(FS<0) = abs(F(FS<0)/((numViavel+1)));
+FS(FS<0) = abs(F(FS<0)/((NumPop - numViavel+1)));
 TotalFitness = sum(FS);
 
 % Calculo da probabilidade

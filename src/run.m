@@ -15,16 +15,15 @@ clear all;
 dirlist = dir('../data/input/*.txt');
 
 % Arquivo de escrita final 
-outputFileName = '../results/results.txt'
+outputFileName = '../results/results_c.txt'
 fileID = fopen(outputFileName,'at');
 fprintf(fileID,'\n------ Inicio execucao ----- \n');
 fclose(fileID);
 
 % Itera nos arquivos de entrada e executa o algoritmo genetico para cada entrada
-for i = 1:length(dirlist)
+for i = 7:length(dirlist)
     viloes = dlmread(strcat('../data/input/', dirlist(i).name));
-	Principal(viloes, dirlist(i).name, false, outputFileName);
-	break
+	Principal(viloes, dirlist(i).name, true, outputFileName);
 end
 
 

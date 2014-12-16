@@ -1,4 +1,4 @@
-function X=Budget2(lista, herois, viloes)
+function X=Budget2(lista, viloes)
 
 % Todos os viloes
 todosHerois = [1:381];

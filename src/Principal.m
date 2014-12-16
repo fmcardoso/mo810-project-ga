@@ -16,14 +16,14 @@ charsAtt = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 % Carrega valores do grafo
 shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
-NumPop = 101; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
+NumPop = (20 * n) + 1; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
 
 % Calcula o budget
 if budget
-  budgetMax = max(Budget1(L,herois,viloes), Budget2(L,herois,viloes));
+  budgetMax = max(Budget1(charsAtt,viloes), Budget2(charsAtt,viloes));
 else
-  budgetMax = false
+  budgetMax = false;
 end
 
 % Inicializaçao da Populaçao
@@ -42,10 +42,10 @@ melhorIndividuo = 0;
 plato = 0;
 
 % Iteracoes do algoritmo genetico
-while(t <= 250 && plato < 50)
+while(t <= 300 && plato < 100)
      retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes, shared);
      % Aumento na probalidade da variacao porque agora ela considera todo o cromossomo
-     retornoVariacao = Variacao(retornoReproducao, 0.8, NumPop, NumGenes, charsAtt);
+     retornoVariacao = Variacao(retornoReproducao, 0.6, NumPop, NumGenes, charsAtt, budget);
      retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared, budgetMax);
      NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
@@ -63,9 +63,9 @@ while(t <= 250 && plato < 50)
 end
 
 % Plota os graficos - Descomentar para a impressao.
-% figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
+ %figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
-% figure(2); plot(mediaFitness, 'r--'); hold on;
+ %figure(2); plot(mediaFitness, 'r--'); hold on;
 
 
 % Escreve os resultados pra cada execuçao - Descomentar para impressao na tela	
@@ -77,12 +77,12 @@ end
 HTCost = 0;
 budgetMax = Inf;                                % HTCost
 for h = 1:length(melhorSolucao)
-                           % Powergrid medio do heroi
- pgm = mean(Atributos(charsAtt, melhorSolucao(h)));
-                           % Popularidade do heroi
- pop = Popularidade(charsAtt, melhorSolucao(h));
-                           % HTCost
- HTCost = HTCost + pgm * pop;
+  % Powergrid medio do heroi
+  pgm = mean(Atributos(charsAtt, melhorSolucao(h)));
+  % Popularidade do heroi
+  pop = Popularidade(charsAtt, melhorSolucao(h));
+  % HTCost
+  HTCost = HTCost + pgm * pop;
 endfor
 
 % Escreve o valor da execucao no arquivo

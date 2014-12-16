@@ -13,7 +13,6 @@ for t = 2:2:NumPop-1
 
     pV = [p1; p2];
 
-
     % Calcula a função objetivo para cada time
     for i = 1:2
        F(i) = (Cooperacao(shared, pV(i,:)) + Experiencia(shared, pV(i,:), viloes));
@@ -34,14 +33,14 @@ for t = 2:2:NumPop-1
     % Valores repetidos são trocados
     f1 = unique(f1);
     for i = length(f1)+1:NumGenes
-      v = setdiff(1:381, f1);
+      v = setdiff(0:381, f1);
       x = v(randi(numel(v)));
       f1(i) = x;
     end
 
     f2 = unique(f2);
     for i = length(f2)+1:NumGenes
-      v = setdiff(1:381, f2);
+      v = setdiff(0:381, f2);
       x = v(randi(numel(v)));
       f2(i) = x;
     end

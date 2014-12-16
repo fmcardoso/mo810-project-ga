@@ -14,7 +14,7 @@ scoreV = sum(V);
 % Com budget
 HTCost = 0;
 budgetMax = Inf;
-if(budget)
+if(budget > 0)
 	% HTCost
 	for h = 1:length(herois)
 		% Powergrid medio do heroi
@@ -23,6 +23,7 @@ if(budget)
 		pop = Popularidade(L, herois(h));
 		% HTCost
 		HTCost = HTCost + pgm * pop;
+		budgetMax = budget;
 	endfor
 endif
 
