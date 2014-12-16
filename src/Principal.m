@@ -1,4 +1,4 @@
-function Prin=Principal(viloes, arquivo)
+function Prin=Principal(viloes, arquivo, budget, outputFileName)
 %--------------------------------------------------------------------------
 % MO810 - Projeto
 % Algoritmo Genético
@@ -16,15 +16,22 @@ charsAtt = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 % Carrega valores do grafo
 shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
-NumPop = 1001; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
+NumPop = 101; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
+
+% Calcula o budget
+if budget
+  budgetMax = max(Budget1(L,herois,viloes), Budget2(L,herois,viloes));
+else
+  budgetMax = false
+end
 
 % Inicializaçao da Populaçao
 % Gene zero significa a ausenência de um herói
 P = randi([0 381], NumPop, NumGenes);
 
 % Chama a funçao de avaliaçao
-F = Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared);
+F = Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared, budgetMax);
 
 % Chama a funçao de selecao
 NovaP= Selecao(P,F, NumPop,NumGenes, 381);
@@ -35,11 +42,11 @@ melhorIndividuo = 0;
 plato = 0;
 
 % Iteracoes do algoritmo genetico
-while(t <= 150 && plato < 50)
+while(t <= 250 && plato < 50)
      retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes, shared);
      % Aumento na probalidade da variacao porque agora ela considera todo o cromossomo
      retornoVariacao = Variacao(retornoReproducao, 0.8, NumPop, NumGenes, charsAtt);
-     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared);
+     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared, budgetMax);
      NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
      mediaFitness(t)=mean(retornoAvaliacao);
@@ -62,9 +69,9 @@ end
 
 
 % Escreve os resultados pra cada execuçao - Descomentar para impressao na tela	
-% disp(strcat('Valor para execuçao: ',  arquivo))
+% disp(strcat('Time Vilões: ',  arquivo))
 % melhorSolucao
-%  max(melhorIndividuo)
+% melhorIndividuo
 
 % Calcula o budget do grupo de herois
 HTCost = 0;
@@ -79,7 +86,7 @@ for h = 1:length(melhorSolucao)
 endfor
 
 % Escreve o valor da execucao no arquivo
-fileID = fopen('exp.txt','at');
+fileID = fopen(outputFileName,'at');
 fprintf(fileID,strcat('\nTime viloes: ',  arquivo));
 fprintf(fileID,'\nValor: %.0f    Tempo: %f\n', melhorIndividuo, toc());
 fprintf(fileID,'Colaboration: %.0f    F. Xp: %.f\n', Cooperacao(shared, melhorSolucao), Experiencia(shared, melhorSolucao, viloes));

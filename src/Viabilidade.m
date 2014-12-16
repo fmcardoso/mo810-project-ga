@@ -1,4 +1,4 @@
-function X=Viabilidade(herois, viloes, budget=false, charsAtt)
+function X=Viabilidade(herois, viloes, budget, charsAtt)
 
 % Carrega as habilidades dos personagens
 L = charsAtt;
@@ -18,19 +18,17 @@ if(budget)
 	% HTCost
 	for h = 1:length(herois)
 		% Powergrid medio do heroi
-		pgm = mean(Atributos(L, herois(h)));
+		pgm = sum(Atributos(L, herois(h)));
 		% Popularidade do heroi
 		pop = Popularidade(L, herois(h));
 		% HTCost
 		HTCost = HTCost + pgm * pop;
 	endfor
-
-	% Calcula budget
-	budgetMax = max(Budget1(L,herois,viloes), Budget2(L,herois,viloes));
 endif
 
 % Compara media usando apenas inteiros
-if (sum(scoreH * nnz(V) > scoreV * nnz(H)) && (HTCost < budgetMax))
+% Verifica se há alguma posição onde os heróis não podem vences
+if ((~any(scoreH * nnz(V) < scoreV * nnz(H))) && (HTCost < budgetMax))
 	X = 1;
 else
 	X = -1;
