@@ -28,7 +28,7 @@ NovaP = P(R,:);
 % Elitismo - Preenche com a melhor solução valida,
 % caso não haja nenhuma utiliza um cromossomo aleatorio
 if elite > 0
-    NovaP(1,:) = P(elite,:);
+  NovaP(1,:) = P(elite,:);
 else
   NovaP(1,:) = round(rand(1,NumGenes)*maxValue);
 end

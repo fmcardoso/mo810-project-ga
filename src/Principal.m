@@ -63,9 +63,9 @@ while(t <= 300 && plato < 100)
 end
 
 % Plota os graficos - Descomentar para a impressao.
- figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
+% figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
- figure(2); plot(mediaFitness, 'r--'); hold on;
+% figure(2); plot(mediaFitness, 'r--'); hold on;
 
 
 % Escreve os resultados pra cada execuçao - Descomentar para impressao na tela	

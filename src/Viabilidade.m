@@ -18,7 +18,7 @@ if(budget > 0)
 	% HTCost
 	for h = 1:length(herois)
 		% Powergrid medio do heroi
-		pgm = sum(Atributos(L, herois(h)));
+		pgm = mean(Atributos(L, herois(h)));
 		% Popularidade do heroi
 		pop = Popularidade(L, herois(h));
 		% HTCost
@@ -35,6 +35,6 @@ else
 	if (HTCost < budgetMax)
 		X = -1;
 	else
-		X = -1/HTCost;
+		X = -budgetMax/HTCost;
 	end
 endif

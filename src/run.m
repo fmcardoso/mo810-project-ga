@@ -15,7 +15,7 @@ clear all;
 dirlist = dir('../data/input/*.txt');
 
 % Arquivo de escrita final 
-outputFileName = '../results/results_c.txt'
+outputFileName = '../results/results.txt'
 fileID = fopen(outputFileName,'at');
 fprintf(fileID,'\n------ Inicio execucao ----- \n');
 fclose(fileID);

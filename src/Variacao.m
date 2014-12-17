@@ -8,8 +8,7 @@ for i=2:NumPop
         for h = 1:NumGenes                  % Powergrid medio do heroi
             if NovaP(i,h) > 0
                 if budget
-                   pgm(h) = (sum(Atributos(charsAtt, NovaP(i,h)))
-                    *Popularidade(charsAtt, NovaP(i,h)));
+                   pgm(h) =  1/mean(Atributos(charsAtt, NovaP(i, h))); %popL(NovaP(i,h)) * pwgL(NovaP(i,h));
                 else
                     pgm(h) = 1/mean(Atributos(charsAtt, NovaP(i, h)));
                 end
@@ -23,7 +22,7 @@ for i=2:NumPop
 
         % Efetua a mutacao desconsiderando as posiçoes existentes
         v = setdiff(0:381, NovaP(i,:));
-        NovaP(i,ph) =v(randi(numel(v)));
+        NovaP(i,ph) = v(randi(numel(v)));
     end
 end
 

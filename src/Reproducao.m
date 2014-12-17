@@ -15,23 +15,7 @@ for t = 2:2:NumPop-1
 
     % Calcula a função objetivo para cada time
     for i = 1:2
-        % Com budget
-      HTCost = 1;
-      budgetMax = 1;
-      if(budget > 0)
-        % HTCost
-        for h = 1:length(pV(i,:))
-          % Powergrid medio do heroi
-          pgm = sum(Atributos(charsAtt, pV(i,:)(h)));
-          % Popularidade do heroi
-          pop = Popularidade(charsAtt, pV(i,:)(h));
-          % HTCost
-          HTCost = HTCost + pgm * pop;
-          budgetMax = budget;
-        endfor
-      endif
-
-       F(i) = (Cooperacao(shared, pV(i,:)) + Experiencia(shared, pV(i,:), viloes)) / (HTCost);
+      F(i) = (Cooperacao(shared, pV(i,:)) + Experiencia(shared, pV(i,:), viloes));
     end
 
     fV = [abs(F(1)) abs(F(2))];
