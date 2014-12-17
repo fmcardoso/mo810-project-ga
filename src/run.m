@@ -15,14 +15,14 @@ clear all;
 dirlist = dir('../data/input/*.txt');
 
 % Arquivo de escrita final - Sem Budget
-outputFileName = '../results/results.txt'
+outputFileName = '../results/results.txt';
 fileID = fopen(outputFileName,'at');
 fprintf(fileID,'\n------ Inicio execucao ----- \n');
 fclose(fileID);
 
 % Arquivo de escrita final - Com Budget
-outputBudgetFileName = '../results/results_budget.txt'
-fileID = fopen(outputFileName,'at');
+outputBudgetFileName = '../results/results_budget.txt';
+fileID = fopen(outputBudgetFileName,'at');
 fprintf(fileID,'\n------ Inicio execucao ----- \n');
 fclose(fileID);
 
