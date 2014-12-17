@@ -29,7 +29,7 @@ NumGenes = n; % Numero de vilões
 
 % Calcula o budget
 if budget
-  [up1, down1]  = Budget1(charsAtt,viloes, popL);
+  [up1, down1]  = Budget1(charsAtt,viloes);
   [up2, down2]  = Budget2(charsAtt,viloes);
   
   B(1,: ) = [up1, down1];
