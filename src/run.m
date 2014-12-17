@@ -27,7 +27,7 @@ fprintf(fileID,'\n------ Inicio execucao ----- \n');
 fclose(fileID);
 
 % Itera nos arquivos de entrada e executa o algoritmo genetico para cada entrada 
-for i = 7:length(dirlist)
+for i = 1:length(dirlist)
     viloes = dlmread(strcat('../data/input/', dirlist(i).name));
     % - Sem budget
 	Principal(viloes, dirlist(i).name, false, outputFileName);
