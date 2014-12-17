@@ -8,7 +8,7 @@ for i=2:NumPop
         for h = 1:NumGenes                  % Powergrid medio do heroi
             if NovaP(i,h) > 0
                 if budget
-                   pgm(h) = mean(Atributos(charsAtt, NovaP(i, h)))/(sum(Atributos(charsAtt, NovaP(i,h)))
+                   pgm(h) = (sum(Atributos(charsAtt, NovaP(i,h)))
                     *Popularidade(charsAtt, NovaP(i,h)));
                 else
                     pgm(h) = 1/mean(Atributos(charsAtt, NovaP(i, h)));

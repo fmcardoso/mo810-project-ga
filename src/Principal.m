@@ -16,7 +16,7 @@ charsAtt = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 % Carrega valores do grafo
 shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
-NumPop = (20 * n) + 1; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
+NumPop = (20 *  n) + 1; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
 
 % Calcula o budget
@@ -43,7 +43,7 @@ plato = 0;
 
 % Iteracoes do algoritmo genetico
 while(t <= 300 && plato < 100)
-     retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes, shared);
+     retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes, shared, charsAtt, budget);
      % Aumento na probalidade da variacao porque agora ela considera todo o cromossomo
      retornoVariacao = Variacao(retornoReproducao, 0.6, NumPop, NumGenes, charsAtt, budget);
      retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared, budgetMax);
@@ -63,9 +63,9 @@ while(t <= 300 && plato < 100)
 end
 
 % Plota os graficos - Descomentar para a impressao.
- %figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
+ figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
- %figure(2); plot(mediaFitness, 'r--'); hold on;
+ figure(2); plot(mediaFitness, 'r--'); hold on;
 
 
 % Escreve os resultados pra cada execuçao - Descomentar para impressao na tela	

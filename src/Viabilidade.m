@@ -29,8 +29,12 @@ endif
 
 % Compara media usando apenas inteiros
 % Verifica se há alguma posição onde os heróis não podem vences
-if ((~any(scoreH * nnz(V) < scoreV * nnz(H))) && (HTCost < budgetMax))
+if ((~any(scoreH * nnz(V) < scoreV * nnz(H))) && (HTCost < budgetMax) && nnz(H) > 1)
 	X = 1;
 else
-	X = -1;
+	if (HTCost < budgetMax)
+		X = -1;
+	else
+		X = -1/HTCost;
+	end
 endif
