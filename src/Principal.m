@@ -16,12 +16,26 @@ charsAtt = ListaAtributos(strcat(dataFolder, 'marvel_character.csv'));
 % Carrega valores do grafo
 shared = MatrizRelacoes(strcat(dataFolder, 'shared_comic_books.csv'));
 
+% Todos 
+todosChars = [1:381];
+
+for i=1:length(todosChars)
+  popL(i) = charsAtt(i,7);  
+  pwgL(i) = sum(Atributos(charsAtt, i));
+end
+
 NumPop = (20 *  n) + 1; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
 
 % Calcula o budget
 if budget
-  budgetMax = max(Budget1(charsAtt,viloes), Budget2(charsAtt,viloes));
+  [up1, down1]  = Budget1(charsAtt,viloes, popL);
+  [up2, down2]  = Budget2(charsAtt,viloes);
+  
+  B(1,: ) = [up1, down1];
+  B(2,: ) = [up2, down2];
+
+  budgetMax = B;
 else
   budgetMax = false;
 end
@@ -31,7 +45,7 @@ end
 P = randi([0 381], NumPop, NumGenes);
 
 % Chama a funçao de avaliaçao
-F = Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared, budgetMax);
+F = Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared, budget, budgetMax);
 
 % Chama a funçao de selecao
 NovaP= Selecao(P,F, NumPop,NumGenes, 381);
@@ -42,11 +56,11 @@ melhorIndividuo = 0;
 plato = 0;
 
 % Iteracoes do algoritmo genetico
-while(t <= 300 && plato < 100)
+while(t <= 300 && plato < 50)
      retornoReproducao = Reproducao(NovaP, 7, NumPop, NumGenes, viloes, shared, charsAtt, budget);
      % Aumento na probalidade da variacao porque agora ela considera todo o cromossomo
-     retornoVariacao = Variacao(retornoReproducao, 0.6, NumPop, NumGenes, charsAtt, budget);
-     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared, budgetMax);
+     retornoVariacao = Variacao(retornoReproducao, 0.6, NumPop, NumGenes, charsAtt, budget, pwgL);
+     retornoAvaliacao = Avaliacao(retornoVariacao, viloes, NumPop, NumGenes, charsAtt, shared, budget, budgetMax);
      NovaP= Selecao(retornoVariacao,retornoAvaliacao,NumPop,NumGenes,381);
      %Calculo da media do fitness da populacao
      mediaFitness(t)=mean(retornoAvaliacao);
@@ -95,26 +109,3 @@ fprintf(fileID,strrep(['Herois: (' sprintf(' %d,', melhorSolucao) ')'], ',)', ')
 fclose(fileID);
 
   toc()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

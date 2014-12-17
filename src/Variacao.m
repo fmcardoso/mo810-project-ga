@@ -1,5 +1,5 @@
 % Aplica a mutacao em algum gene do individuo
-function R=Variacao(NovaP, pm, NumPop, NumGenes, charsAtt, budget)
+function R=Variacao(NovaP, pm, NumPop, NumGenes, charsAtt, budget, pwgL)
 
 % Variacao em todos genes da populacao
 for i=2:NumPop
@@ -8,9 +8,9 @@ for i=2:NumPop
         for h = 1:NumGenes                  % Powergrid medio do heroi
             if NovaP(i,h) > 0
                 if budget
-                   pgm(h) =  1/mean(Atributos(charsAtt, NovaP(i, h))); %popL(NovaP(i,h)) * pwgL(NovaP(i,h));
+                   pgm(h) = 1/pwgL(NovaP(i,h)); %popL(NovaP(i,h)) * pwgL(NovaP(i,h));
                 else
-                    pgm(h) = 1/mean(Atributos(charsAtt, NovaP(i, h)));
+                   pgm(h) = 1/pwgL(NovaP(i,h));
                 end
             else
                 pgm(h) = rand();

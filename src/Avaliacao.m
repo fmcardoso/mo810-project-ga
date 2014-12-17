@@ -1,4 +1,4 @@
-function F=Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared, budgetMax)
+function F=Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared, budget, budgetMax)
 %--------------------------------------------------------------------------
 %% Função de Fitness:
 %% Calcula asoma o peso da arestas entre os todos os pares de heróis e entre os todos os pares heroi/vilão
@@ -7,7 +7,7 @@ function F=Avaliacao(P, viloes, NumPop, NumGenes, charsAtt, shared, budgetMax)
 % Avaliaçao da populaçao
 % Soluções viaveis são positivas
 for i = 1:NumPop
-   V(i) = Viabilidade(P(i,:), viloes, budgetMax, charsAtt);
+   V(i) = Viabilidade(P(i,:), viloes, budget, budgetMax, charsAtt);
 end
 
 % Calcula a função objetivo para cada time
