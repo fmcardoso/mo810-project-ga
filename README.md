@@ -11,7 +11,7 @@ Implementação em algoritmos genéticos para o problema de colaboração de sup
 
 Executar arquivo run.m pelo Octave.
 
-Saída será escrita no arquivo 'exp.txt' ou outro definido nos arquivos run.m e Principal.m.
+Saída será escrita no arquivo 'outpufFile' especificado definido nos arquivos run.m.
 
 
 

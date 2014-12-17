@@ -23,7 +23,7 @@ fclose(fileID);
 % Itera nos arquivos de entrada e executa o algoritmo genetico para cada entrada
 for i = 1:length(dirlist)
     viloes = dlmread(strcat('../data/input/', dirlist(i).name));
-	Principal(viloes, dirlist(i).name, true, outputFileName);
+	Principal(viloes, dirlist(i).name, false, outputFileName);
 end
 
 

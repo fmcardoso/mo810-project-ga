@@ -24,7 +24,7 @@ for i=1:length(todosChars)
   pwgL(i) = sum(Atributos(charsAtt, i));
 end
 
-NumPop = (20 *  n) + 1; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
+NumPop = (30 *  n) + 1; % Tamanho da população (deve ser impar pois a primeira posição corresponde a elite)
 NumGenes = n; % Numero de vilões
 
 % Calcula o budget
@@ -77,9 +77,9 @@ while(t <= 300 && plato < 50)
 end
 
 % Plota os graficos - Descomentar para a impressao.
-% figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
+%figure(1); plot(melhorIndividuo_1, 'r--'); hold on;
 
-% figure(2); plot(mediaFitness, 'r--'); hold on;
+%figure(2); plot(mediaFitness, 'r--'); hold on;
 
 
 % Escreve os resultados pra cada execuçao - Descomentar para impressao na tela	
